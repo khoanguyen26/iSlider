@@ -3,48 +3,70 @@
 // Date: 7/15/13
 // Version: 1.0
 
-
-function iSlider(){  
+$(function(){
 	
-	// Scroll to function
-	function scrollTo(element){
-		
-		// scroll to the element
-		$('html,body').animate({scrollTop: $(element).offset().top},800, 'easeInOutCubic');
-	}
+	//creating a strut object to use globally
+	iSlider.targets={};
 	
-
-	//open slider
+	//positioning where there slider content is
+	iSlider.position={};
 	
-  $('*[data-slider-source]').each(function(){
-		$(this).on('click', function(){
+	//begin iSlider
+	function iSlider(){  
 		
-		//set variable for slider source at the trigger level
-		var	sliderSource = $(this).attr('data-slider-source');	
+		// hide slider content by default
+		$('*[data-role="slider-content"]').hide();
 		
-		//slider content
-		var	sliderContent = $('*[data-role="slider"]');
+		// set some variables
 
-		//hide slider content by default
-		$(sliderContent).hide();
+		// Scroll to function
+		function scrollTo(element){
+
+			// scroll to the element
+			$('html,body').animate({scrollTop: $(element).offset().top},800, 'easeInOutCubic');
+		}
+
+
+		//open slider
+
+	  $('*[data-slider-source]').each(function(){
+			$(this).on('click', function(){
+				
+				//slider source
+				iSlider.targets.sliderSource = $(this).attr('data-slider-source');	
+
+				//slider content
+				iSlider.targets.sliderContent = $('*[data-role="slider-content"]');
 		
-		//show the slider's content that matches the 'data-source'
-		$('*[id="'+sliderSource+'"]').slideDown();
-		
-		//scroll to open content
-		scrollTo('*[id="'+sliderSource+'"]');
-		
-		return false;
+			//hide slider content by default
+			// $(sliderContent).hide();
+
+			//show the slider's content that matches the 'data-source'
+			$('*[id="'+iSlider.targets.sliderSource+'"]').slideToggle(400, 'easeInOutCubic');
+
+			//scroll to open content
+			scrollTo('*[id="'+iSlider.targets.sliderSource+'"]');
+
+			console.log(iSlider.targets);
+
+			return false;
+			});
 		});
-	});
 
-	//close slider
+		//close slider
+		console.log(iSlider.targets, iSlider.position);
+		
+		$('.button-close, .close-slider').on('click', function(){
+			//grab the id of the current slider content and close it onClick
+			var sliderContent = iSlider.targets.sliderSource;
+			$('#'+sliderContent+'').slideUp();
+		});
+	};
+
+
+	// init iSlider
+	iSlider();
 	
-	$('.button-close, .close-slider').on('click', function(){
-		$('.slider-content').slideUp();
-	});
-};
-
-iSlider();
+});
 
 
