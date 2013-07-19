@@ -56,11 +56,13 @@ $(function(){
 		//close slider
 		console.log(iSlider.targets, iSlider.position);
 		
-		$('.button-close, .close-slider').on('click', function(){
-			//grab the id of the current slider content and close it onClick
-			var sliderContent = iSlider.targets.sliderSource;
-			$('#'+sliderContent+'').slideUp();
+		$('.close-slider').each(function(){
+			$(this).on('click', function(){
+					$(this).parents('[data-role="slider-content"]').slideUp();
+			});
 		});
+		
+		
 	};
 
 
