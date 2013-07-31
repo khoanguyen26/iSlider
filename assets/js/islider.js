@@ -2,6 +2,7 @@
 // Author: Khoa Nguyen
 // Date: 7/15/13
 // Version: 1.0
+// Documentation on Github: https://github.com/khoanguyen26/iSlider
 
 $(function(){
 	
