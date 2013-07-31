@@ -9,19 +9,17 @@ Dependency
 Using iSlider is easy, just follow the steps below: 
 
 1. Add the latest version of Jquery to your site
-    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 
 2. Add "jquery-easing-min.js" to use easing in your animation
 
 3. Reference the iSlider plugin
-    <script src="islider.js"></script>
 
 HTML
 =======
 
 Trigger:
-    <button type="button" data-slider-source="example1">Show Content 1</button>
 
+    <button type="button" data-slider-source="example1">Show Content 1</button>
 
 Slider content:
 
@@ -36,13 +34,16 @@ Slider content:
 Attributes
 =======
 
-data-slider-source:
+<strong>data-slider-source:</strong>
+
 Defines your slider destination
 
-data-role:
+<strong>data-role:</strong>
+
 Defines your slider content
 
-data-toggle:
+<strong>data-toggle:</strong>
+
 By default, the slider will perform a "slideToggle". However, if data-toggle="fade", then the content will fade in instead
 
 
