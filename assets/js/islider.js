@@ -55,7 +55,7 @@ $(function(){
 
 				//scroll to open content
 				scrollTo(iSlider.targets.sliderContent);
-				console.log(iSlider.targets, "toggle: ",iSlider.toggle);
+				// console.log(iSlider.targets, "toggle: ",iSlider.toggle);
 			return false;
 			});
 		});
@@ -65,7 +65,7 @@ $(function(){
 		$('.close-slider').each(function(){
 			
 			$(this).on('click', function(){
-				console.log("toggle: ",iSlider.toggle);
+				// console.log("toggle: ",iSlider.toggle);
 				
 				if(iSlider.toggle == "fade"){
 					$(this).parents('[data-role="slider-content"]').fadeOut();
