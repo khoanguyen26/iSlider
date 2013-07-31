@@ -6,12 +6,12 @@
 $(function(){
 	
 	//creating a strut object to use globally
-	iSlider.targets={};
+	iSlider.targets = {};
 	
 	//positioning where there slider content is
-	iSlider.position={};
+	iSlider.position = {};
 	
-	sliderToggle = "";
+	iSlider.toggle = {};
 	
 	//begin iSlider
 	function iSlider(){  
@@ -31,39 +31,47 @@ $(function(){
 
 		//open slider
 
-	  $('*[data-slider-source]').each(function(){
+	  $('[data-slider-source]').each(function(){
 			$(this).on('click', function(){
 				
 				//slider source
 				iSlider.targets.sliderSource = $(this).attr('data-slider-source');	
 
 				//slider content
-				iSlider.targets.sliderContent = $('*[data-role="slider-content"]');
+				iSlider.targets.sliderContent = $('[id="'+iSlider.targets.sliderSource+'"]')
 				
-				//slider toggle
-				sliderToggle = $(this).attr('data-toggle');
+				//set slider toggle attribute
+				iSlider.toggle = $(this).attr('data-toggle');
 				
-				//hide slider content by default
-				if(sliderToggle == 'false'){
-					$(iSlider.targets.sliderContent).hide();
+				//toggling different slider options
+				if(iSlider.toggle == "fade"){
+					$(iSlider.targets.sliderContent).fadeIn();
+				}else{
+					//show the slider's content that matches the 'data-source'
+					$(iSlider.targets.sliderContent).slideToggle(400, 'easeInOutCubic');
 				}
 
-				//show the slider's content that matches the 'data-source'
-				$('*[id="'+iSlider.targets.sliderSource+'"]').slideToggle(400, 'easeInOutCubic');
+
 
 				//scroll to open content
-				scrollTo('*[id="'+iSlider.targets.sliderSource+'"]');
-
+				scrollTo(iSlider.targets.sliderContent);
+				console.log(iSlider.targets, "toggle: ",iSlider.toggle);
 			return false;
 			});
 		});
 
 		//close slider
-		console.log(iSlider.targets, iSlider.position);
 		
 		$('.close-slider').each(function(){
+			
 			$(this).on('click', function(){
+				console.log("toggle: ",iSlider.toggle);
+				
+				if(iSlider.toggle == "fade"){
+					$(this).parents('[data-role="slider-content"]').fadeOut();
+				}else{
 					$(this).parents('[data-role="slider-content"]').slideUp();
+				}
 			});
 		});
 	
